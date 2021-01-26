@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+
+{% block head%}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/post_show.css') }}">
+
+<title>All Post Page</title>
+
+{% endblock %}
+
+
+{%block body %}
+<h6><marquee style="background-color: yellow;" behavior="" direction="">This Server is under development.
+   Keep patience for full facility from the server</marquee></h6>
+<br>
+
+<!-- {% if msg%}
+<div class="alert">
+   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+   {{msg}}
+</div>
+{%endif%} -->
+
+<h2 style="display: inline"> Updated Current Posts</h2>
+
+<a  class="btn btn-success float-right"  href='#' id="btn2" >+ Create Post</a>
+<br><br>
+<hr>
+{% for item in posts[0]%}
+<h3>{{item.title}}</h3>
+{% if item.author_id %}
+<small>written By {{posts[1].query.get(item.author_id).first_name}} 
+   {{posts[1].query.get(item.author_id).last_name}} on {{item.time_created}}</small>
+{%else %}
+<small>written By Unknown on {{item.time_created}}</small>
+{%endif%}
+<br><br>
+<p style="font-family: sans-serif;white-space: pre-wrap;">{{item.content}}</p>
+<br>
+{%if item.author_id==posts[2] %}
+<a class='btn btn-danger' href="/posts/delete/{{item.id}}">Delete Post</a>
+<a class='btn btn-primary' href="/posts/edit/{{item.id}}">Edit</a>
+{%endif%}
+<textarea id='comment_box' ></textarea>
+<button class="btn btn-success"  onclick="comment_box()">Comment</button>
+<hr>
+
+{%endfor%}
+
+<script>
+   function comment_box(){
+      id= document.getElementById('comment_box')
+      if(id.getAttribute('hidden')==true){
+         id.setAttribute('hidden',false)
+      }
+      else{
+         id.setAttribute('hidden',true)
+      }
+   }
+</script>
+
+<script src="{{ url_for('static',filename='js/new_post_show.js') }}"></script>
+{% endblock %}

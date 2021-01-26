@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+
+{% block head%}
+<link rel="stylesheet" href="../static/css/log-in.css">
+<title>Home Page</title> 
+
+{% endblock %}
+
+
+{%block body %}
+{%if msg %}
+<div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{msg}}
+</div>
+{%endif%}
+
+<br>
+
+
+{%if info%}
+{% if info[1]%}
+    <h1 style="display: inline">Welcome Blogger {{info[0]}}</h1>
+    <a class='btn btn-danger float-right' onclick="removeid()" href="/blogger/logout">Log-Out</a>
+{%else%}
+    <h1 style="display: inline">Welcome Blogger!</h1>
+    <a class='btn btn-primary float-right'  href="/blogger/login">Log-In</a>
+{%endif%}
+{%endif%}
+
+<br><br>
+<main role="main">
+    <div class="jumbotron">
+        <div class="col-sm-8 mx-auto">
+            <h2>Ready for Blogging!! Lets Go</h2>
+            <p>The importance of blog descriptions may not seem important to you now.
+
+                When users come across your brand in the SERPs, the first thing they come across is the description. Next to the title, it is the one that makes make or break decision.
+                
+                Blog or post description is the piece of text that appears below your link in SERPs and social sites.</p>
+              <p>
+                <code>There are two types of descriptions for a blog.</code> 
+                
+                <p style='background-color: aquamarine;'>Blog description: A description of your whole blog visible under your blog’s homepage link.</p> 
+                <p style='background-color: aquamarine;'>Blog post description: A description of what your blog post is about that is different for your each and every blog post</p>
+             </p>
+            
+                <a class="btn btn-primary" href="/posts" role="button">View WorldWide Posts</a>
+            </p>
+        </div>
+    </div>
+</main>
+</div>
+
+
+<script src="{{ url_for('static',filename='js/index.js') }}"></script>
+{%endblock %}

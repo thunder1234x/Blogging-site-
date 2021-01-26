@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block head%}
+
+<title>Edit Post Page</title> 
+
+{% endblock %}
+
+
+{%block body %}
+<br><br>
+<center><h1>Edit Your  Post</h1></center>
+<form action="/posts/edit/{{num[0]}}" method="post">
+
+    <label for="title">Title</label>
+    <br>
+    <input class="form-control" type="text" name="title" required id="title" value="{{num[1].title}}">
+    <br>
+    <label for="author">Author</label>
+    <br>
+    <input class="form-control" type="text" name="author"  id="author" value="{{num[1].author_id}}" readonly>
+    <br>
+    <label for="content">Post Content</label>
+    <br>
+    <textarea  class="form-control" name="content" required id="content">{{num[1].content}}</textarea>
+    <br><br>
+   <center> <input class="btn btn-primary" type="submit" value="Save"> </center>
+
+</form>
+
+{% endblock %}

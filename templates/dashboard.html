@@ -1,0 +1,70 @@
+{% extends 'base.html'%}
+
+
+{%block head%} 
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+{%endblock%}
+
+{%block body%}
+
+    <span  id='headline' style='color:black;font-size:50px;font-weight:bold'>This is Dashboard</span>
+<!-- for graph plotting -->
+   <div class="container">
+    <canvas id='mychart' height=100px></canvas>
+   </div>
+
+<!-- hidden divs for getting data flask to script -->
+    <div hidden id='color_code'>{{color_code}}</div>
+    <div hidden id='cities'>{{data['cities']}}</div>
+    <div hidden id='peoples'>{{data['peoples']}}</div>
+
+
+<script type="text/javascript">
+
+let cities=eval(document.getElementById('cities').innerHTML)
+let population=eval(document.getElementById('peoples').innerHTML)
+let colors=eval(document.getElementById('color_code').innerHTML)
+console.log(cities,population,colors)
+
+let chart=document.getElementById('mychart').getContext('2d')
+let masschart=new Chart(chart,{
+    type:'bar',
+    data:{
+        labels:cities,
+        datasets:[{
+             label:'population',
+             data:population,
+             backgroundColor:colors,
+             borderWidth:1,
+             borderColor:'#777',
+             hoverBorderWidth:3,
+             hoverBorderColor:'#000'
+        }],
+    },
+    options:{
+        title:{
+            display:true,
+            text:'Westbengal City Population',
+            fontSize:25
+        },
+        legend:{
+            position:'right'
+        }
+    }
+})
+
+
+
+setInterval(function change() {
+    
+            var arr=eval(document.getElementById('color_code').innerHTML);
+            document.getElementById('headline').style.backgroundColor=arr[Math.floor(Math.random() * arr.length)]
+    
+        },1000)
+     
+</script>
+    
+{%endblock%}
+
+

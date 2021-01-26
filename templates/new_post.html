@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block head%}
+
+<title>New Post Page</title> 
+
+{% endblock %}
+
+
+{%block body %}
+<br><br>
+<center><h1>Create Your New Post</h1></center>
+<form action="/posts/new" method="post">
+
+    <label for="title">Title</label>
+    <br>
+    <input class="form-control" type="text" name="title" required id="title" placeholder="Title of Post">
+    <br>
+    <label for="author">Author</label>
+    <br>
+    <input class="form-control" type="text" name="author"  id="author"  value='{{user_name}}' readonly>
+    <br>
+    <label for="content">Post Content</label>
+    <br>
+    <textarea  class="form-control" name="content" id="content" required  placeholder="Enter Your Post"></textarea>
+    <br><br>
+   <center> <input class="btn btn-primary" type="submit" value="Post"> </center>
+
+</form>
+
+{% endblock %}
